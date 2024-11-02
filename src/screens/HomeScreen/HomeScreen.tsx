@@ -44,6 +44,12 @@ const HomeScreenComponent = () => {
   const renderStock = useCallback(
     ({ item }: ListRenderItemInfo<Stock>) => (
       <View style={styles.stockContainer}>
+        {/*
+          NOTE NOTE NOTE
+          I found an api the gets ticker details that includes ticker icon
+          (/v3/reference/tickers/{ticker})
+          But I found it very wasteful to make a call for every stock just to get the icon
+        */}
         <Image
           source={{
             uri: `https://ui-avatars.com/api/?name=${item.name}&background=191926&color=fff`,
