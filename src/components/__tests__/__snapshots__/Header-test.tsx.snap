@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Testing 'Header' component Should render with default variant if no variant specified 1`] = `
+exports[`Testing 'Header' component Should render 1`] = `
 <RNCSafeAreaView
   edges={
     {
