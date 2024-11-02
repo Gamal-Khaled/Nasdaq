@@ -18,7 +18,8 @@ type StockResponse = StockSuccessResponse | StockFailureResponse;
 
 export const getStocksByExchange = (
   exchange: string,
-  limit: number
+  limit: number,
+  search?: string
 ): Promise<StockResponse> => {
   const searchParams = new URLSearchParams({
     market: "stocks",
@@ -27,6 +28,10 @@ export const getStocksByExchange = (
     limit: String(limit),
     exchange,
   });
+
+  if (search) {
+    searchParams.append("search", search);
+  }
 
   return fetch(
     `${process.env.BASE_URL}/tickers?${searchParams.toString()}`
