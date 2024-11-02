@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing 'Text' component Should render with default variant if no variant specified 1`] = `
+<Text
+  style={
+    {
+      "color": "#fff",
+    }
+  }
+>
+  Test Text
+</Text>
+`;
+
+exports[`Testing 'Text' component Should render with the specified variant 1`] = `
+<Text
+  style={
+    {
+      "color": "#fff",
+      "fontSize": 12,
+    }
+  }
+  testID="testText"
+>
+  Test Text
+</Text>
+`;
