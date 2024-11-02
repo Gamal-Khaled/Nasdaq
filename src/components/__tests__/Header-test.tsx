@@ -5,7 +5,7 @@ import Header from "../Header";
 afterEach(cleanup);
 
 describe("Testing 'Header' component", () => {
-  test("Should render with default variant if no variant specified", () => {
+  it("Should render", () => {
     render(<Header />);
 
     expect(screen.toJSON()).toMatchSnapshot();
