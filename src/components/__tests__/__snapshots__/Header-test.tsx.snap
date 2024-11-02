@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing 'Header' component Should render 1`] = `
+<RNCSafeAreaView
+  edges={
+    {
+      "bottom": "off",
+      "left": "off",
+      "right": "off",
+      "top": "off",
+    }
+  }
+  style={
+    {
+      "backgroundColor": "#191926",
+      "flexDirection": "row",
+      "paddingHorizontal": 16,
+      "paddingVertical": 12,
+    }
+  }
+>
+  <Image
+    source={
+      {
+        "testUri": "../../../src/assets/NASDAQ_Logo.png",
+      }
+    }
+    style={
+      {
+        "aspectRatio": 3.5,
+        "resizeMode": "contain",
+        "tintColor": "#fff",
+        "width": 100,
+      }
+    }
+  />
+</RNCSafeAreaView>
+`;

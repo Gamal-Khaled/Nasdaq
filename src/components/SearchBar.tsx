@@ -12,17 +12,19 @@ const SearchBarComponent = ({ onSearch }: Props) => {
   const [search, setSearch] = useState("");
   const debounceRef = useRef<NodeJS.Timeout>();
 
-  const handleChangeText = useCallback((value: string) => {
-    setSearch(value);
-    if (debounceRef.current) {
-      clearTimeout(debounceRef.current)
-    }
-    
-    debounceRef.current = setTimeout(() => {
-      onSearch(value);
-    }, 300);
-  }, [search]);
+  const handleChangeText = useCallback(
+    (value: string) => {
+      setSearch(value);
+      if (debounceRef.current) {
+        clearTimeout(debounceRef.current);
+      }
 
+      debounceRef.current = setTimeout(() => {
+        onSearch(value);
+      }, 300);
+    },
+    [search]
+  );
 
   const handleSubmit = useCallback(() => {
     onSearch(search);
@@ -30,6 +32,7 @@ const SearchBarComponent = ({ onSearch }: Props) => {
 
   return (
     <TextInput
+      testID="searchBar"
       style={styles.search}
       placeholder="Search for stocks"
       placeholderTextColor={theme.border}

@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing 'SearchBar' component Should render 1`] = `
+<TextInput
+  onChangeText={[Function]}
+  onSubmitEditing={[Function]}
+  placeholder="Search for stocks"
+  placeholderTextColor="#666980"
+  returnKeyType="search"
+  style={
+    {
+      "borderColor": "#666980",
+      "borderRadius": 30,
+      "borderWidth": 1,
+      "color": "#fff",
+      "marginHorizontal": 16,
+      "marginVertical": 16,
+      "paddingHorizontal": 16,
+      "paddingVertical": 12,
+    }
+  }
+  testID="searchBar"
+  value=""
+/>
+`;
