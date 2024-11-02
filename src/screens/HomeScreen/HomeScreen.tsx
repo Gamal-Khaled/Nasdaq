@@ -1,5 +1,7 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 import {
+  ActivityIndicator,
+  Alert,
   FlatList,
   ListRenderItemInfo,
   SafeAreaView,
@@ -7,13 +9,36 @@ import {
   View,
 } from "react-native";
 
-import { Header, Text } from "../../components";
 import theme from "../../theme/theme";
-import { stocks } from "./mockData";
 import Stock from "../../types/Stock";
 import { spacing } from "../../theme/spacing";
+import { Header, Text } from "../../components";
+import useStocksByExchange from "../../hooks/useStocksByExchange";
 
 const HomeScreenComponent = () => {
+  const { loadStocks, data, loading, loadMore, loadingMore } =
+    useStocksByExchange("XNAS");
+
+  useEffect(() => {
+    loadStocks().catch((error) => {
+      if (error.status === "ERROR") {
+        Alert.alert("Error", error.error);
+      } else {
+        Alert.alert("Error", String(error.message));
+      }
+    });
+  }, []);
+
+  const onEndReached = useCallback(() => {
+    loadMore()?.catch((error) => {
+      if (error.status === "ERROR") {
+        Alert.alert("Error", error.error);
+      } else {
+        Alert.alert("Error", String(error.message));
+      }
+    });
+  }, [loadMore]);
+
   const renderStock = useCallback(
     ({ item }: ListRenderItemInfo<Stock>) => (
       <View style={styles.stockContainer}>
@@ -31,12 +56,23 @@ const HomeScreenComponent = () => {
   return (
     <SafeAreaView style={styles.container}>
       <Header />
-      <FlatList
-        data={stocks}
-        renderItem={renderStock}
-        numColumns={2}
-        contentContainerStyle={styles.list}
-      />
+
+      {loading ? (
+        <View style={styles.loadingContainer}>
+          <ActivityIndicator color={theme.primary} size={"large"} />
+        </View>
+      ) : (
+        <FlatList
+          data={data}
+          renderItem={renderStock}
+          numColumns={2}
+          contentContainerStyle={styles.list}
+          onEndReached={onEndReached}
+          ListFooterComponent={
+            <ActivityIndicator color={theme.primary} animating={loadingMore} />
+          }
+        />
+      )}
     </SafeAreaView>
   );
 };
@@ -59,7 +95,7 @@ const styles = StyleSheet.create({
     marginHorizontal: spacing.smaller,
     flex: 1,
     marginBottom: spacing.base,
-    justifyContent: 'space-evenly'
+    justifyContent: "space-evenly",
   },
   title: {
     marginBottom: spacing.smaller,
@@ -67,6 +103,11 @@ const styles = StyleSheet.create({
   },
   subtitle: {
     textAlign: "center",
+  },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
 
