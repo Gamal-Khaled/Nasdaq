@@ -29,7 +29,7 @@ export const getStocksByExchange = (
     exchange,
   });
 
-  if (search) {
+  if (typeof search === "string") {
     searchParams.append("search", search);
   }
 
