@@ -12,9 +12,10 @@ const useStocksByExchange = (exchange: string) => {
   const [loading, toggleLoading] = useToggle();
   const [loadingMore, toggleLoadingMore] = useToggle();
 
-  const loadStocks = useCallback(() => {
+  const loadStocks = useCallback((search?: string) => {
     toggleLoading();
-    return getStocksByExchange(exchange, 36)
+    setStocksListCursor(null);
+    return getStocksByExchange(exchange, 36, search)
       .then((response) => {
         if (response.status === "OK") {
           setStocks(response.results);

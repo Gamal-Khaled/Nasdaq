@@ -9,7 +9,7 @@ export interface Props extends TextProps {
   secondary?: boolean;
 }
 
-const Text = ({ variant, secondary, style, ...props }: Props) => {
+const TextComponent = ({ variant, secondary, style, ...props }: Props) => {
   const _style = StyleSheet.flatten([
     !!variant && variants[variant],
     secondary ? styles.secondaryStyle : styles.defaultStyle,
@@ -28,4 +28,5 @@ export const styles = StyleSheet.create({
   },
 });
 
+const Text = React.memo(TextComponent);
 export default Text;

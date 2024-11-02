@@ -13,6 +13,7 @@ import theme from "../../theme/theme";
 import Stock from "../../types/Stock";
 import { spacing } from "../../theme/spacing";
 import { Header, Text } from "../../components";
+import SearchBar from "../../components/SearchBar";
 import useStocksByExchange from "../../hooks/useStocksByExchange";
 
 const HomeScreenComponent = () => {
@@ -29,7 +30,7 @@ const HomeScreenComponent = () => {
     });
   }, []);
 
-  const onEndReached = useCallback(() => {
+  const handleEndReached = useCallback(() => {
     loadMore()?.catch((error) => {
       if (error.status === "ERROR") {
         Alert.alert("Error", error.error);
@@ -53,9 +54,14 @@ const HomeScreenComponent = () => {
     []
   );
 
+  const handleSearch = useCallback((searchTerm: string) => {
+    loadStocks(searchTerm);
+  }, []);
+
   return (
     <SafeAreaView style={styles.container}>
       <Header />
+      <SearchBar onSearch={handleSearch} />
 
       {loading ? (
         <View style={styles.loadingContainer}>
@@ -67,7 +73,7 @@ const HomeScreenComponent = () => {
           renderItem={renderStock}
           numColumns={2}
           contentContainerStyle={styles.list}
-          onEndReached={onEndReached}
+          onEndReached={handleEndReached}
           ListFooterComponent={
             <ActivityIndicator color={theme.primary} animating={loadingMore} />
           }

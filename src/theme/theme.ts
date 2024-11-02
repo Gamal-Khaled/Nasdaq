@@ -13,7 +13,7 @@ const theme: Theme = {
     warning: "#F0D500",
     success: "#0CBE24",
 
-    border: '#303240',
+    border: '#666980',
 };
 
 export default theme;
