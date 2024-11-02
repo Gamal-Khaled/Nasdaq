@@ -3,6 +3,7 @@ import {
   ActivityIndicator,
   Alert,
   FlatList,
+  Image,
   ListRenderItemInfo,
   SafeAreaView,
   StyleSheet,
@@ -43,6 +44,12 @@ const HomeScreenComponent = () => {
   const renderStock = useCallback(
     ({ item }: ListRenderItemInfo<Stock>) => (
       <View style={styles.stockContainer}>
+        <Image
+          source={{
+            uri: `https://ui-avatars.com/api/?name=${item.name}&background=191926&color=fff`,
+          }}
+          style={styles.stockIcon}
+        />
         <Text variant="title" style={styles.title}>
           {item.ticker}
         </Text>
@@ -101,6 +108,7 @@ const styles = StyleSheet.create({
     flex: 1,
     marginBottom: spacing.base,
     justifyContent: "space-evenly",
+    alignItems: "center",
   },
   title: {
     marginBottom: spacing.smaller,
@@ -113,6 +121,12 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+  },
+  stockIcon: {
+    height: 50,
+    width: 50,
+    borderRadius: 25,
+    marginBottom: spacing.smaller,
   },
 });
 
