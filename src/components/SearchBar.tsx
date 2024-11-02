@@ -47,8 +47,9 @@ const styles = StyleSheet.create({
     borderColor: theme.border,
     borderRadius: 30,
     marginHorizontal: spacing.base,
-    marginTop: spacing.base,
+    marginVertical: spacing.base,
     paddingHorizontal: spacing.base,
+    paddingVertical: spacing.small,
     color: theme.font,
   },
 });

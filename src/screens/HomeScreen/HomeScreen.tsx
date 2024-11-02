@@ -89,7 +89,6 @@ const styles = StyleSheet.create({
     backgroundColor: theme.background,
   },
   list: {
-    paddingVertical: spacing.base,
     paddingHorizontal: spacing.smaller,
   },
   stockContainer: {
